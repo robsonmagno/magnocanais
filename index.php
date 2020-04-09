@@ -15,9 +15,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.6">
-    <title>Dashboard Template · Bootstrap</title>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/dashboard/">
+    <title>Magno Canais</title>
 
     <!-- Bootstrap core CSS -->
 <link href="css/bootstrap.min.css" rel="stylesheet" >
@@ -69,11 +67,7 @@
       <div class="sidebar-sticky">
         <ul class="nav flex-column">
           <?php
-          
-            //while($row = mysqli_fetch_array($result)){
             while($row = pg_fetch_row($result)){      
-              
-
               echo '<li class="nav-item" onclick="channel(\''.$row[3].'\')";>';
                 echo '<a class="nav-link" href="#">';
                   echo '<span data-feather="home"></span>';
