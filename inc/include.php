@@ -1,4 +1,6 @@
 <?php
+header('X-Frame-Options: anonymous');
+
 $my_con = mysqli_connect("localhost", "root", "gppai", "magnocanais");
 
 //PostgreSQL
