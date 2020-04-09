@@ -2,7 +2,9 @@
   include "inc/include.php";
 
   $sql = "SELECT can_id, can_num, can_nom, can_url FROM canais";
-  $result = mysqli_query($cnn, $sql);
+  //$result = mysqli_query($my_con, $sql);
+
+  $result = pg_query($pg_con, $sql);
 
 ?>
 <!doctype html>
@@ -18,7 +20,7 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/dashboard/">
 
     <!-- Bootstrap core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link href="css/bootstrap.min.css" rel="stylesheet" >
 
     <!-- Favicons -->
 <link rel="apple-touch-icon" href="img/favicons/apple-touch-icon.png" sizes="180x180">
@@ -67,12 +69,15 @@
       <div class="sidebar-sticky">
         <ul class="nav flex-column">
           <?php
-            
-            while($row = mysqli_fetch_array($result)){
-              echo '<li class="nav-item" onclick="channel(\''.$row['can_url'].'\')";>';
+          
+            //while($row = mysqli_fetch_array($result)){
+            while($row = pg_fetch_row($result)){      
+              
+
+              echo '<li class="nav-item" onclick="channel(\''.$row[3].'\')";>';
                 echo '<a class="nav-link" href="#">';
                   echo '<span data-feather="home"></span>';
-                  echo $row['can_nom'];
+                  echo $row[2];
                 echo '</a>';
               echo '</li>';
             }
@@ -81,11 +86,11 @@
       </div>
     </nav>
 
-
+            <div id="tela" crossorigin="anonymous"></div>
   </div>
 </div>
-<script src="js/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-      <script>window.jQuery || document.write('<script src="js/jquery.slim.min.js"><\/script>')</script><script src="js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+<script src="js/jquery-3.4.1.slim.min.js"></script>
+      <script>window.jQuery || document.write('<script src="js/jquery.slim.min.js"><\/script>')</script><script src="js/bootstrap.bundle.min.js"></script>
       </body>
 </html>
 <script>
